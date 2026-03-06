@@ -36,6 +36,9 @@ yarn-error.*
 # typescript
 *.tsbuildinfo
 
-# generated native folders
-/ios
-/android
+# Ignorar solo temporales de Android, NO el código fuente
+android/build/
+android/.gradle/
+android/app/build/
+android/.cxx/
+android/local.properties
