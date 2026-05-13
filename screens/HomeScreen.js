@@ -4,11 +4,21 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from "@expo/vector-icons";
 import { useBlink } from '../BlinkContext';
 import { useIsFocused } from '@react-navigation/native'; 
+import { Camera } from 'expo-camera';
 
 export default function HomeScreen({ navigation }) {
   const { blinkTimestamp, isFaceDetected } = useBlink();
   const isFocused = useIsFocused();
   const lastProcessedBlink = useRef(blinkTimestamp);
+
+  useEffect(() => {
+  (async () => {
+    const { status } = await Camera.requestCameraPermissionsAsync();
+    if (status !== 'granted') {
+      alert('Se necesitan permisos de cámara para el rastreo facial.');
+    }
+  })();
+}, []);
 
   // Lógica de parpadeo (sin tocar)
   useEffect(() => {
@@ -58,7 +68,7 @@ export default function HomeScreen({ navigation }) {
         <TouchableOpacity
           style={styles.mainButton}
           activeOpacity={0.8}
-          onPress={() => navigation.navigate("Intensity")}
+          onPress={() => navigation.navigate("Calibration")}
         >
           <Text style={styles.buttonText}>Empezar</Text>
           <View style={styles.iconCircle}>
