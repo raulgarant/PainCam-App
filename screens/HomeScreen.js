@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from "@expo/vector-icons";
 import { useBlink } from '../BlinkContext';
 import { useIsFocused } from '@react-navigation/native'; 
-import { Camera } from 'expo-camera';
+import { Camera } from 'react-native-vision-camera'; 
 
 export default function HomeScreen({ navigation }) {
   const { blinkTimestamp, isFaceDetected } = useBlink();
@@ -12,13 +12,14 @@ export default function HomeScreen({ navigation }) {
   const lastProcessedBlink = useRef(blinkTimestamp);
 
   useEffect(() => {
-  (async () => {
-    const { status } = await Camera.requestCameraPermissionsAsync();
-    if (status !== 'granted') {
-      alert('Se necesitan permisos de cámara para el rastreo facial.');
-    }
-  })();
-}, []);
+    (async () => {
+      const cameraPermission = await Camera.requestCameraPermission();
+      
+      if (cameraPermission !== 'granted') {
+        alert('⚠️ Se necesitan permisos de cámara para el rastreo facial.');
+      }
+    })();
+  }, []);
 
   // Lógica de parpadeo (sin tocar)
   useEffect(() => {
