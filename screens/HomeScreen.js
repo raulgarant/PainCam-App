@@ -1,37 +1,68 @@
-import React from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import React, { useEffect, useRef } from 'react';
+import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from "@expo/vector-icons";
+import { useBlink } from '../BlinkContext';
+import { useIsFocused } from '@react-navigation/native'; 
 
 export default function HomeScreen({ navigation }) {
+  const { blinkTimestamp, isFaceDetected } = useBlink();
+  const isFocused = useIsFocused();
+  const lastProcessedBlink = useRef(blinkTimestamp);
+
+  // Lógica de parpadeo (sin tocar)
+  useEffect(() => {
+    if (!isFocused) {
+      lastProcessedBlink.current = blinkTimestamp;
+      return;
+    }
+
+    if (blinkTimestamp > lastProcessedBlink.current) {
+      lastProcessedBlink.current = blinkTimestamp;
+      navigation.navigate('Calibration');
+    }
+  }, [blinkTimestamp, isFocused]);
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.topBar}>
-        <View style={styles.statusBadge}>
-          <Ionicons name="eye" size={18} color="#065F46" />
-          <Text style={styles.statusText}>Sensor Activo</Text>
+        <View style={[styles.statusBadge, { backgroundColor: isFaceDetected ? "#D1FAE5" : "#FEE2E2" }]}>
+          <Ionicons name="eye" size={18} color={isFaceDetected ? "#059669" : "#DC2626"} />
+          <Text style={[styles.statusText, { color: isFaceDetected ? "#059669" : "#DC2626" }]}>
+            {isFaceDetected ? "Sensor Activo" : "Buscando rostro..."}
+          </Text>
         </View>
-        <TouchableOpacity style={styles.settingsButton} onPress={() => navigation.navigate("Tracking")}>
-          <Ionicons name="settings-outline" size={26} color="#0F172A" />
+        <TouchableOpacity style={styles.settingsButton} onPress={() => navigation.navigate("Help")}>
+          <Ionicons name="settings-outline" size={26} color="#1E293B" />
         </TouchableOpacity>
       </View>
 
-      <View style={styles.textContainer}>
-        <Text style={styles.title}>PainCam</Text>
+      <View style={styles.centerContainer}>
+        {/* ICONO Y TÍTULO ALINEADOS */}
+        <View style={styles.brandWrapper}>
+          <Image 
+            source={require('../assets/icon.png')} 
+            style={styles.logoIcon} 
+          />
+          <Text style={styles.title}>PainCam</Text>
+        </View>
+        
         <Text style={styles.subtitle}>
           Comunica tu dolor{"\n"}a través de los ojos.
         </Text>
       </View>
 
-      <View style={styles.buttonWrapper}>
+      <View style={styles.footerContainer}>
+        <Text style={styles.hintText}>Parpadea para comenzar</Text>
+        
         <TouchableOpacity
           style={styles.mainButton}
           activeOpacity={0.8}
-          onPress={() => navigation.navigate("Zones")}
+          onPress={() => navigation.navigate("Intensity")}
         >
           <Text style={styles.buttonText}>Empezar</Text>
           <View style={styles.iconCircle}>
-            <Ionicons name="arrow-forward" size={22} color="#1E3A8A" />
+            <Ionicons name="arrow-forward" size={24} color="#EA580C" />
           </View>
         </TouchableOpacity>
       </View>
@@ -40,16 +71,105 @@ export default function HomeScreen({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#F1F5F9", justifyContent: "space-between", paddingVertical: 5 },
-  topBar: { flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginTop: 20, paddingHorizontal: 24 },
-  statusBadge: { flexDirection: "row", alignItems: "center", backgroundColor: "#A7F3D0", paddingVertical: 10, paddingHorizontal: 20, borderRadius: 25 },
-  statusText: { marginLeft: 8, fontSize: 15, fontWeight: "700", color: "#065F46" },
-  settingsButton: { backgroundColor: "#FFFFFF", padding: 10, borderRadius: 15, borderWidth: 1, borderColor: "#E2E8F0" },
-  textContainer: { flex: 1, justifyContent: "center", alignItems: "center", paddingHorizontal: 24 },
-  title: { fontSize: 58, fontWeight: "900", color: "#0F172A", letterSpacing: -2, textAlign: "center" },
-  subtitle: { fontSize: 22, color: "#64748B", marginTop: 16, lineHeight: 32, textAlign: "center", fontWeight: "500" },
-  buttonWrapper: { alignItems: "center", paddingBottom: 20, paddingHorizontal: 24 },
-  mainButton: { flexDirection: "row", backgroundColor: "#1E3A8A", paddingVertical: 18, paddingHorizontal: 28, borderRadius: 35, alignItems: "center", justifyContent: "center", shadowColor: "#1E3A8A", shadowOffset: { width: 0, height: 10 }, shadowOpacity: 0.3, shadowRadius: 15, elevation: 6 },
-  buttonText: { fontSize: 22, fontWeight: "800", color: "#FFFFFF", marginRight: 16 },
-  iconCircle: { backgroundColor: "#E6EFFB", width: 44, height: 44, borderRadius: 22, alignItems: "center", justifyContent: "center" },
+  container: { 
+    flex: 1, 
+    backgroundColor: "#F8FAFC", // Un gris muy claro/blanco azulado
+    paddingVertical: 10 
+  },
+  topBar: { 
+    flexDirection: "row", 
+    justifyContent: "space-between", 
+    alignItems: "center", 
+    marginTop: 10, 
+    paddingHorizontal: 24 
+  },
+  statusBadge: { 
+    flexDirection: "row", 
+    alignItems: "center", 
+    paddingVertical: 8, 
+    paddingHorizontal: 16, 
+    borderRadius: 20 
+  },
+  statusText: { 
+    marginLeft: 8, 
+    fontSize: 14, 
+    fontWeight: "700" 
+  },
+  settingsButton: { 
+    backgroundColor: "#FFFFFF", 
+    padding: 10, 
+    borderRadius: 15, 
+    elevation: 2,
+    shadowColor: "#000",
+    shadowOpacity: 0.05,
+    shadowRadius: 10
+  },
+  centerContainer: { 
+    flex: 1, 
+    justifyContent: "center", 
+    alignItems: "center" 
+  },
+  brandWrapper: {
+    flexDirection: "row", // Pone el icono al lado del texto
+    alignItems: "center",
+    marginBottom: 10
+  },
+  logoIcon: {
+    width: 65, // Ajustado para que armonice con el texto
+    height: 65,
+    marginRight: 15,
+    borderRadius: 14
+  },
+  title: { 
+    fontSize: 54, 
+    fontWeight: "900", 
+    color: "#0F172A", 
+    letterSpacing: -2 
+  },
+  subtitle: { 
+    fontSize: 20, 
+    color: "#475569", 
+    lineHeight: 28, 
+    textAlign: "center", 
+    fontWeight: "500",
+    marginTop: 10
+  },
+  footerContainer: {
+    alignItems: "center",
+    paddingBottom: 40
+  },
+  hintText: {
+    fontSize: 18,
+    color: "#94A3B8",
+    marginBottom: 20,
+    fontWeight: "600"
+  },
+  mainButton: { 
+    flexDirection: "row", 
+    backgroundColor: "#EA580C", 
+    paddingVertical: 20, 
+    paddingHorizontal: 35, 
+    borderRadius: 40, 
+    alignItems: "center", 
+    justifyContent: "center",
+    elevation: 8,
+    shadowColor: "#EA580C",
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.3,
+    shadowRadius: 12
+  },
+  buttonText: { 
+    fontSize: 24, 
+    fontWeight: "800", 
+    color: "#FFFFFF", 
+    marginRight: 15 
+  },
+  iconCircle: { 
+    backgroundColor: "#FFFFFF", 
+    width: 40, 
+    height: 40, 
+    borderRadius: 20, 
+    alignItems: "center", 
+    justifyContent: "center" 
+  },
 });
