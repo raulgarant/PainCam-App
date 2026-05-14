@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
   cardNormal: { height: 220 },
   cardTall: { height: 450 },
   iconContainerGrid: { marginBottom: 15, justifyContent: 'center', alignItems: 'center' },
-  cardTitle: { fontSize: 24, fontWeight: 'bold', textAlign: 'center', paddingHorizontal: 10 },
+  cardTitle: { fontSize: 35, fontWeight: 'bold', textAlign: 'center', paddingHorizontal: 10 },
   textWhite: { color: '#FFF' },
   cursor: { position: 'absolute', width: 20, height: 20, borderRadius: 10, backgroundColor: 'rgba(59, 130, 246, 0.8)', borderWidth: 2, borderColor: '#FFF', zIndex: 9999 },
 });

@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
   cardInactive: { backgroundColor: '#FFF', borderColor: "#EA580C" },
   iconContainer: { marginBottom: 10, height: 70, justifyContent: 'center', alignItems: 'center' },
   icon: { fontSize: 50 },
-  cardTitle: { fontSize: 20, fontWeight: 'bold', textAlign: 'center' },
+  cardTitle: { fontSize: 35, fontWeight: 'bold', textAlign: 'center' },
   textWhite: { color: '#FFF' },
   cursor: { position: 'absolute', width: 20, height: 20, borderRadius: 10, backgroundColor: 'rgba(59, 130, 246, 0.8)', borderWidth: 2, borderColor: '#FFF', zIndex: 9999 },
 });

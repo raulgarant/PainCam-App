@@ -176,7 +176,7 @@ const styles = StyleSheet.create({
   card: { borderRadius: 16, alignItems: 'center', justifyContent: 'center', borderWidth: 3, backgroundColor: '#FFF' },
   cardLarge: { flex: 1, height: 480, minWidth: '30%' },
   cardSmall: { width: '32%', height: 230 },
-  cardTitle: { fontSize: 40, fontWeight: 'bold' },
+  cardTitle: { fontSize: 48, fontWeight: 'bold' },
   textWhite: { color: '#FFF' },
   cursor: {
     position: 'absolute',

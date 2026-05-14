@@ -13,7 +13,7 @@ const TutorialScreen = ({ navigation }) => {
           <Text style={styles.backButtonText}>❌ Cerrar</Text>
         </TouchableOpacity>
         <Text style={styles.title}>Guía de Uso</Text>
-        <View style={{ width: 80 }} /> {/* Espaciador para centrar el título */}
+        <View style={{ width: 80 }} />
       </View>
 
       <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>

@@ -146,9 +146,9 @@ const styles = StyleSheet.create({
   grid: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', gap: 15, paddingHorizontal: 10 },
   card: { width: '32%', height: 230, borderRadius: 16, alignItems: 'center', justifyContent: 'center', borderWidth: 3 },
   cardActive: { backgroundColor: '#EA580C', borderColor: '#a53f09' },
-  cardInactive: { backgroundColor: '', borderColor: '#EA580C' },
+  cardInactive: { backgroundColor: '#FFF', borderColor: '#EA580C' },
   icon: { fontSize: 40, marginBottom: 10 },
-  cardTitle: { fontSize: 20, fontWeight: 'bold' },
+  cardTitle: { fontSize: 40, fontWeight: 'bold' },
   textWhite: { color: '#FFF' },
   textBlue: { color: '#374151' },
   cursor: {

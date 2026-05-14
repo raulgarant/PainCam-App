@@ -44,14 +44,14 @@ const options = useMemo(() => {
     if (origenStr.includes('lumbar')) {
       return [
         { id: 'Glúteo', name: 'Glúteo', IconComponent: GluteIcon, color: '#EA580C' },
-        { id: 'Muslo Posterior', name: 'Muslo Trasero', IconComponent: HamstringIcon, color: '#EA580C' },
+        { id: 'Muslo Posterior', name: 'Muslo Trasero', IconComponent: ThighIcon, color: '#EA580C' },
         { id: 'Pantorrilla/Pie', name: 'Pantorrilla o Pie', IconComponent: FootIcon, color: '#EA580C' }
       ];
     }
     
     if (origenStr.includes('hombro')) {
       return [
-        { id: 'Brazo Superior', name: 'Brazo', IconComponent: UpperArmIcon, icon: '💪', color: '#EA580C' },
+        { id: 'Brazo Superior', name: 'Brazo', IconComponent: UpperArmIcon, color: '#EA580C' },
         { id: 'Codo', name: 'Codo', IconComponent: ElbowIcon, icon: '📐', color: '#EA580C' },
         { id: 'Cuello', name: 'Cuello', IconComponent: ArrowUpIcon, icon: '👤', color: '#EA580C' } // Usamos ArrowUpIcon temporalmente si no hay CuelloIcon
       ];
@@ -59,20 +59,19 @@ const options = useMemo(() => {
     
     if (origenStr.includes('pecho') || origenStr.includes('abdomen')) {
       return [
-        { id: 'Brazo Izquierdo', name: 'Brazo Izquierdo', IconComponent: LeftArmIcon, icon: '💪', color: '#EA580C' },
-        { id: 'Más arriba', name: 'Hacia arriba', IconComponent: ArrowUpIcon, icon: '⬆️', color: '#EA580C' },
-        { id: 'Más abajo', name: 'Hacia abajo', IconComponent: ArrowDownIcon, icon: '⬇️', color: '#EA580C' }
+        { id: 'Brazo', name: 'Brazo Izquierdo', IconComponent: ArmIcon, icon: '💪', color: '#EA580C' },
+        { id: 'Más arriba', name: 'Hacia arriba', IconComponent: ArrowUpIcon, color: '#EA580C' },
+        { id: 'Más abajo', name: 'Hacia abajo', IconComponent: ArrowDownIcon, color: '#EA580C' }
       ];
     }
     
     if (origenStr.includes('codo')) {
       return [
-        { id: 'Brazo', name: 'Hacia arriba', IconComponent: ShoulderIcon, icon: '⬆️', color: '#EA580C' },
-        { id: 'Mano', name: 'Hacia la mano', IconComponent: PalmIcon, icon: '🖐️', color: '#EA580C' }
+        { id: 'Brazo', name: 'Hacia arriba', IconComponent: ShoulderIcon, color: '#EA580C' },
+        { id: 'Mano', name: 'Hacia la mano', IconComponent: PalmIcon, color: '#EA580C' }
       ];
     }
 
-    // Default
     return [
       { id: 'Más abajo', name: 'Hacia abajo', IconComponent: ArrowDownIcon, color: '#EA580C' },
       { id: 'Más arriba', name: 'Hacia arriba', IconComponent: ArrowUpIcon, color: '#EA580C' },
@@ -223,10 +222,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 4,
   },
-  cardLarge: { width: '45%', height: 400 },
+  cardLarge: { width: '48%', height: 450 },
   cardMedium: { width: '31%', height: 400 },
   iconContainer: { marginBottom: 20 },
-  cardTitle: { fontSize: 22, fontWeight: 'bold', textAlign: 'center' },
+  cardTitle: { fontSize: 35, fontWeight: 'bold', textAlign: 'center' },
   textWhite: { color: '#FFF' },
   cursor: { 
     position: 'absolute', width: 24, height: 24, borderRadius: 12, 

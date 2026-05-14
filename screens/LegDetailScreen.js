@@ -189,7 +189,7 @@ const LegDetailScreen = ({ navigation }) => {
               </View>
               <Text style={[
                 styles.cardTitle, 
-                { fontSize: titleSize },
+                { fontSize: 35 },
                 isActive ? styles.textWhite : { color: '#111827' }
               ]}>
                 {option.name}

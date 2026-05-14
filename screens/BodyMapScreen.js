@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
   subtitle: { fontSize: 18, color: '#6B7280' },
   grid: { flexDirection: 'row', justifyContent: 'center', gap: 20, width: '100%', paddingHorizontal: 20 },
   card: { flex: 1, height: 480, borderRadius: 20, alignItems: 'center', justifyContent: 'center', borderWidth: 4, backgroundColor: '#FFF' },
-  cardTitle: { fontSize: 40, fontWeight: 'bold', marginTop: 20 },
+  cardTitle: { fontSize: 48, fontWeight: 'bold', marginTop: 20 },
   textWhite: { color: '#FFF' },
   cursor: {
     position: 'absolute',

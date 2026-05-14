@@ -140,8 +140,8 @@ const styles = StyleSheet.create({
   subtitle: { fontSize: 18, color: '#6B7280' },
   grid: { flexDirection: 'row', justifyContent: 'space-between', gap: 15, width: '100%', paddingHorizontal: 10 },
   card: { flex: 1, height: 480, borderRadius: 16, alignItems: 'center', justifyContent: 'center', borderWidth: 3, backgroundColor: '#FFF' },
-  cardTitle: { fontSize: 24, fontWeight: 'bold', marginBottom: 8 },
-  cardSub: { fontSize: 18, fontWeight: '600' },
+  cardTitle: { fontSize: 48, fontWeight: 'bold', marginBottom: 8 },
+  cardSub: { fontSize: 30, fontWeight: '600' },
   textWhite: { color: '#FFF' },
   cursor: {
     position: 'absolute',

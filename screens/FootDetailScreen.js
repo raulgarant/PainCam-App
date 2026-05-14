@@ -183,7 +183,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center', 
     alignItems: 'center' 
   },
-  cardTitle: { fontSize: 24, fontWeight: 'bold', textAlign: 'center', paddingHorizontal: 10 },
+  cardTitle: { fontSize: 35, fontWeight: 'bold', textAlign: 'center', paddingHorizontal: 10 },
   textWhite: { color: '#FFF' },
   cursor: { 
     position: 'absolute', 

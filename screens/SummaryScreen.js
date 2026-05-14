@@ -24,8 +24,8 @@ const SummaryScreen = ({ navigation }) => {
   const viewRef = useRef();
 
   const actions = [
-    { id: 'confirm', name: 'ENVIAR REPORTE', color: '#10B981', icon: '✅' },
-    { id: 'reset', name: 'REINICIAR', color: '#6B7280', icon: '🔄' }
+    { id: 'confirm', name: 'ENVIAR REPORTE', color: '#10B981', },
+    { id: 'reset', name: 'REINICIAR', color: '#6B7280' }
   ];
 
   const getIntensityColor = (value) => {
@@ -88,7 +88,7 @@ const SummaryScreen = ({ navigation }) => {
           format: 'png',
           quality: 1,
         });
-        
+
         await Sharing.shareAsync(localUri, {
           dialogTitle: 'Guardar resumen médico',
         });
@@ -203,7 +203,7 @@ const SummaryScreen = ({ navigation }) => {
               ]}
             >
               <Text style={[styles.buttonText, isActive && { color: '#FFF' }]}>
-                {action.icon} {action.name}
+                {action.name}
               </Text>
             </TouchableOpacity>
           );
@@ -240,7 +240,7 @@ const styles = StyleSheet.create({
 
   footer: { flexDirection: 'row', gap: 15, marginTop: 15, height: 120 },
   actionButton: { borderRadius: 20, borderWidth: 4, justifyContent: 'center', alignItems: 'center', backgroundColor: '#FFF' },
-  buttonText: { fontSize: 18, fontWeight: 'bold', color: '#374151' },
+  buttonText: { fontSize: 28, fontWeight: 'bold', color: '#374151' },
 
   cursor: { position: 'absolute', width: 24, height: 24, borderRadius: 12, backgroundColor: 'rgba(59, 130, 246, 0.8)', borderWidth: 2, borderColor: '#FFF', zIndex: 9999 }
 });

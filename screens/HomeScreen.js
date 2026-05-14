@@ -44,7 +44,7 @@ export default function HomeScreen({ navigation }) {
           </Text>
         </View>
         <TouchableOpacity style={styles.settingsButton} onPress={() => navigation.navigate("Help")}>
-          <Ionicons name="settings-outline" size={26} color="#1E293B" />
+          <Ionicons name="information-circle-sharp" size={26} color="#1E293B" />
         </TouchableOpacity>
       </View>
 
